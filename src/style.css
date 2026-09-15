@@ -51,13 +51,13 @@ img, video { max-width: 100%; }
   object-position: 50% 30%;
   will-change: transform;
   z-index: 0;
-  filter: brightness(1.05) contrast(1.05) saturate(1.08);
+  filter: brightness(1.05) contrast(1.02) saturate(1.16);
 }
 
 .hero-video-b {
   object-position: 50% 55%;
   z-index: 1;
-  filter: brightness(0.82) contrast(1.12) saturate(1.18);
+  filter: brightness(0.82) contrast(1.08) saturate(1.26);
 }
 
 .hero-scrim {
