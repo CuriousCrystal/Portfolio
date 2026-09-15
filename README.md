@@ -1,10 +1,13 @@
-# Umbra — A Motion Study
+# Saarthak Singh — Portfolio
 
-A scroll-driven cinematic piece: two videos scrubbed frame-accurately by
+A scroll-driven cinematic portfolio: two videos scrubbed frame-accurately by
 scroll position, with editorial text reveals synced to each scene. Built as
 one continuous pinned sequence rather than a series of stacked sections —
 scroll speed, video playback direction, and text timing all stay locked
-together, forward or backward.
+together, forward or backward. Eight scenes carry the resume content —
+introduction, contact, education (with GitHub/LinkedIn links), about,
+extracurriculars, accomplishments, projects, and technical skills — over
+footage of a descent into shadow and an arrival out of it.
 
 **[Live site →](https://your-deployment-url.pages.dev)** _(update this link
 once deployed)_
