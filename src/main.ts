@@ -81,6 +81,17 @@ function revealSceneNow(scene: HTMLElement) {
   if (eyebrow) gsap.to(eyebrow, { autoAlpha: 1, letterSpacing: "0.16em", duration: 0.45, ease: "sine.out", delay: 0.1 });
 }
 
+/** iOS Safari (and some other mobile browsers) won't reliably honor
+ * `currentTime` seeks on a video that has never actually entered the
+ * "playing" state — even when muted, even when readyState says metadata is
+ * loaded. Playing a frame and immediately pausing "unlocks" seeking for the
+ * rest of the video's life. Muted+playsinline video is exempt from autoplay
+ * restrictions in effectively every current mobile browser, so this runs
+ * without needing a user gesture first. */
+function primeForSeeking(video: HTMLVideoElement) {
+  video.play().then(() => video.pause()).catch(() => video.pause());
+}
+
 /** Drives a video's currentTime from a scrub proxy. Skips redundant seeks
  * while one is already in flight (avoids flooding the decoder and lagging
  * behind scroll), then re-checks on "seeked" once it resolves — otherwise a
@@ -122,8 +133,8 @@ function initHero() {
   const progressFill = hero?.querySelector<HTMLElement>(".hero-progress-fill");
   if (!hero || !videoA || !videoB || !close || !endcard) return;
 
-  videoA.pause();
-  videoB.pause();
+  primeForSeeking(videoA);
+  primeForSeeking(videoB);
   gsap.set(videoB, { autoAlpha: 0 });
   gsap.set(close, { opacity: 0 });
   gsap.set(endcard, { opacity: 0 });
