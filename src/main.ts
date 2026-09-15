@@ -91,6 +91,25 @@ function primeForSeeking(video: HTMLVideoElement) {
   video.play().then(() => video.pause()).catch(() => video.pause());
 }
 
+/** Scroll-scrubbing needs to seek to arbitrary byte offsets on demand, which
+ * browsers implement as range-requesting the network resource — if the host
+ * doesn't serve HTTP Range requests (some CDN/static-host configs silently
+ * ignore the Range header and return the full file with 200 instead of 206),
+ * every seek past the currently-buffered position is just dropped by the
+ * browser: currentTime never moves, even though readyState/buffered still
+ * look fine. Fetching the file into memory once and pointing the video at a
+ * blob: URL sidesteps that entirely — a blob is random-access locally, so
+ * every seek is instant regardless of what the server supports. These clips
+ * are only a few MB each, small enough to fetch whole. Always the mp4 (not
+ * the webm alternate) since h.264 plays natively on every target browser
+ * including iOS Safari, which has no WebM support at all. */
+async function loadAsBlob(video: HTMLVideoElement): Promise<void> {
+  const source = video.querySelector<HTMLSourceElement>('source[type="video/mp4"]');
+  if (!source) return;
+  const blob = await (await fetch(source.src)).blob();
+  video.src = URL.createObjectURL(blob);
+}
+
 /** Drives a video's currentTime from a scrub proxy. Skips redundant seeks
  * while one is already in flight (avoids flooding the decoder and lagging
  * behind scroll), then re-checks on "seeked" once it resolves — otherwise a
@@ -122,7 +141,7 @@ function wireScrub(video: HTMLVideoElement, proxy: { t: number }) {
  * length), the shot fades to black over 955-1045, then the end card fades
  * in over the remaining 1045-1105.
  */
-function initHero() {
+async function initHero() {
   const hero = document.querySelector<HTMLElement>("#hero");
   const videoA = hero?.querySelector<HTMLVideoElement>(".hero-video-a");
   const videoB = hero?.querySelector<HTMLVideoElement>(".hero-video-b");
@@ -131,6 +150,11 @@ function initHero() {
   const scenes = hero ? gsap.utils.toArray<HTMLElement>(hero.querySelectorAll(".scene")) : [];
   const progressFill = hero?.querySelector<HTMLElement>(".hero-progress-fill");
   if (!hero || !videoA || !videoB || !close || !endcard) return;
+
+  // Falls back to the original network-streamed <source> on fetch failure
+  // (offline, blocked request) — scrubbing degrades to whatever the host's
+  // Range support allows instead of the video failing to load at all.
+  await Promise.allSettled([loadAsBlob(videoA), loadAsBlob(videoB)]);
 
   primeForSeeking(videoA);
   primeForSeeking(videoB);
