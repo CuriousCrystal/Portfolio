@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Umbra — A Motion Study</title>
+  <meta name="description" content="Umbra — a scroll-driven cinematic study of descent, shadow, and the space between steps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,440;1,9..144,420&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Posters would otherwise compete with the (much larger) video files for
+       bandwidth under preload="auto" and can lose that race, showing a blank
+       frame before the poster paints. Preloading them keeps that crisp. -->
+  <link rel="preload" as="image" href="/media/poster.jpg" />
+  <link rel="preload" as="image" href="/media/arrival-poster.jpg" />
+</head>
+<body>
+  <div id="app">
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-pin">
+          <video
+            class="hero-video hero-video-a"
+            muted
+            playsinline
+            preload="auto"
+            poster="/media/poster.jpg"
+          >
+            <source src="/media/descent.mp4" type="video/mp4" />
+            <source src="/media/descent.webm" type="video/webm" />
+          </video>
+
+          <video
+            class="hero-video hero-video-b"
+            muted
+            playsinline
+            preload="auto"
+            poster="/media/arrival-poster.jpg"
+          >
+            <source src="/media/arrival.mp4" type="video/mp4" />
+            <source src="/media/arrival.webm" type="video/webm" />
+          </video>
+
+          <div class="hero-scrim"></div>
+          <div class="hero-grain"></div>
+          <div class="hero-close"></div>
+          <div class="hero-endcard">
+            <span class="endcard-mark">Umbra</span>
+            <span class="endcard-sub">A Motion Study</span>
+          </div>
+
+          <div class="hero-scenes">
+            <article class="scene" data-scene="0">
+              <span class="scene-eyebrow"><em>I</em> — The First Step</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">Every descent begins</span></span>
+                <span class="line"><span class="line-inner">with one deliberate step.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="1">
+              <span class="scene-eyebrow"><em>II</em> — Weight &amp; Motion</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">The floor remembers each footfall</span></span>
+                <span class="line"><span class="line-inner">long after the sound is gone.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="2">
+              <span class="scene-eyebrow"><em>III</em> — The Threshold</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">Light thins to a single seam.</span></span>
+                <span class="line"><span class="line-inner">Certainty follows it down.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="3">
+              <span class="scene-eyebrow"><em>IV</em> — Into the Unseen</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">What continues in the dark</span></span>
+                <span class="line"><span class="line-inner">was never lost — only unseen.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="4">
+              <span class="scene-eyebrow"><em>V</em> — Two Eyes in the Dark</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">Not everything hidden stays hidden.</span></span>
+                <span class="line"><span class="line-inner">Something is already moving toward you.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="5">
+              <span class="scene-eyebrow"><em>VI</em> — Through the Haze</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">It comes the way memory does —</span></span>
+                <span class="line"><span class="line-inner">slow, then suddenly whole.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="6">
+              <span class="scene-eyebrow"><em>VII</em> — The Shape of It</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">Steel remembers every mile</span></span>
+                <span class="line"><span class="line-inner">the way skin remembers a scar.</span></span>
+              </h2>
+            </article>
+
+            <article class="scene" data-scene="7">
+              <span class="scene-eyebrow"><em>VIII</em> — Arrival</span>
+              <h2 class="scene-line">
+                <span class="line"><span class="line-inner">It was always going to arrive.</span></span>
+                <span class="line"><span class="line-inner">The only question was when.</span></span>
+              </h2>
+            </article>
+          </div>
+
+          <div class="hero-foot">
+            <div class="hero-progress"><span class="hero-progress-fill"></span></div>
+            <span class="scroll-cue">Scroll to continue</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
