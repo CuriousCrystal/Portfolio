@@ -163,6 +163,21 @@ img, video { max-width: 100%; }
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75), 0 1px 4px rgba(0, 0, 0, 0.85);
 }
 
+/* Long single-paragraph scenes (About Me, Personal Projects, Technological
+   Skills) need a smaller, denser body style — the display headline size
+   used elsewhere would run to dozens of lines and overflow the viewport. */
+.scene--copy {
+  max-width: 38rem;
+}
+
+.scene--copy .scene-line {
+  font-family: var(--serif);
+  font-weight: 340;
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
 .scene-links {
   margin: 1rem 0 0;
   pointer-events: auto;
@@ -240,6 +255,8 @@ img, video { max-width: 100%; }
   .scene { max-width: none; }
 
   .scene-line { font-size: clamp(1.5rem, 7vw, 2rem); }
+
+  .scene--copy .scene-line { font-size: 0.8rem; line-height: 1.5; }
 
   .hero-foot { bottom: 1.5rem; }
 }
