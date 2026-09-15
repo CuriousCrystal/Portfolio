@@ -6,7 +6,6 @@
   --umbra-soft: #e27d5f;
   --serif: "Fraunces", "Iowan Old Style", ui-serif, Georgia, serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --display: "Limelight", "Fraunces", serif;
   color-scheme: dark;
 }
 
@@ -106,10 +105,11 @@ img, video { max-width: 100%; }
 }
 
 .endcard-mark {
-  font-family: var(--display);
+  font-family: var(--serif);
+  font-style: italic;
   font-weight: 400;
   font-size: clamp(1.8rem, 4.5vw, 3rem);
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
 }
 
 .endcard-sub {
@@ -155,11 +155,12 @@ img, video { max-width: 100%; }
 
 .scene-line {
   margin: 0;
-  font-family: var(--display);
-  font-weight: 400;
+  font-family: var(--serif);
+  font-weight: 440;
   font-size: clamp(1.5rem, 3.4vw, 2.6rem);
   line-height: 1.32;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75), 0 1px 4px rgba(0, 0, 0, 0.85);
 }
 
@@ -205,6 +206,10 @@ img, video { max-width: 100%; }
 .line {
   display: block;
   overflow: hidden;
+}
+
+.line:not(:first-child) {
+  margin-top: 0.3em;
 }
 
 .line-inner {
