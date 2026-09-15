@@ -1,4 +1,4 @@
-Portfolio
+## Portfolio
 
 A scroll-driven cinematic portfolio: two videos scrubbed frame-accurately by
 scroll position, with editorial text reveals synced to each scene. Built as
