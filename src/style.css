@@ -128,10 +128,12 @@ img, video { max-width: 100%; }
 
 .scene {
   position: absolute;
+  top: 50%;
   left: clamp(1.5rem, 6vw, 6rem);
   right: clamp(1.5rem, 6vw, 6rem);
   max-width: 30rem;
   opacity: 0;
+  transform: translateY(-50%);
 }
 
 .scene-eyebrow {
