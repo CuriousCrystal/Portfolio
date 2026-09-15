@@ -164,6 +164,15 @@ img, video { max-width: 100%; }
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75), 0 1px 4px rgba(0, 0, 0, 0.85);
 }
 
+/* Multi-line list-style scenes (Contacts, Education, Extra Curricular,
+   Accomplishments) carry more text than the short punchy scenes (e.g.
+   Introduction), so the same full headline size reads oversized and
+   cramped. Dial it down a step while keeping the headline family/weight. */
+.scene--compact .scene-line {
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  line-height: 1.3;
+}
+
 /* Long single-paragraph scenes (About Me, Personal Projects, Technological
    Skills) need a smaller, denser body style — the display headline size
    used elsewhere would run to dozens of lines and overflow the viewport. */
