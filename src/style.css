@@ -163,6 +163,30 @@ img, video { max-width: 100%; }
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75), 0 1px 4px rgba(0, 0, 0, 0.85);
 }
 
+.scene-links {
+  margin: 1rem 0 0;
+  pointer-events: auto;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+.scene-link {
+  color: var(--ink-dim);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease;
+}
+
+.scene-link:hover,
+.scene-link:focus-visible {
+  color: var(--umbra-soft);
+}
+
+.scene-link-sep {
+  color: var(--ink-dim);
+  margin: 0 0.5em;
+}
+
 .line {
   display: block;
   overflow: hidden;
