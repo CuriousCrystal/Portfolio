@@ -5,8 +5,6 @@ import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const isMobile = window.matchMedia("(max-width: 760px)").matches;
-
 /** Buttery inertia scrolling — decouples visual scroll from raw wheel/trackpad
  * input so the whole scrub feels fluid instead of following the browser's
  * native (stepped, platform-dependent) scroll exactly. Wired into GSAP's own
@@ -16,10 +14,11 @@ const isMobile = window.matchMedia("(max-width: 760px)").matches;
  * wheel tick to its own fixed-time ease, which compounds into a noticeable
  * drift after you stop scrolling; lerp mode instead chases whatever the
  * current target is every frame, so it stays smooth but tightly coupled to
- * live input. */
+ * live input. Same lerp value on every device — the scrub should feel the
+ * same on a phone as it does on a laptop. */
 function initSmoothScroll() {
   const lenis = new Lenis({
-    lerp: isMobile ? 0.15 : 0.1,
+    lerp: 0.1,
     smoothWheel: true,
     syncTouch: false, // native touch scroll feels better than a lerped one on mobile
     // This page's core mechanic IS scroll-linked motion (the video scrub) —
@@ -56,7 +55,7 @@ function addSceneToTimeline(tl: gsap.core.Timeline, scene: HTMLElement, [enterSt
 
   gsap.set(scene, { autoAlpha: 0 });
   gsap.set(lines, { yPercent: 115 });
-  if (eyebrow) gsap.set(eyebrow, { autoAlpha: 0, letterSpacing: isMobile ? "0.16em" : "0.32em" });
+  if (eyebrow) gsap.set(eyebrow, { autoAlpha: 0, letterSpacing: "0.32em" });
 
   tl.set(scene, { autoAlpha: 1 }, enterStart)
     .fromTo(eyebrow, { autoAlpha: 0 }, { autoAlpha: 1, duration: enterDur, ease: "sine.out" }, enterStart)

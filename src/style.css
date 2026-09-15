@@ -231,7 +231,7 @@ img, video { max-width: 100%; }
   z-index: 6;
   left: clamp(1.5rem, 6vw, 6rem);
   right: clamp(1.5rem, 6vw, 6rem);
-  bottom: 2.2rem;
+  bottom: clamp(1.5rem, 3vw, 2.2rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -263,16 +263,12 @@ img, video { max-width: 100%; }
 
 /* ---------- Mobile ---------- */
 
+/* Only the total scroll distance changes on mobile — the pinned hero still
+   needs less physical scrolling to cover the same relative journey. Text
+   sizing, spacing, and scroll feel all use the same fluid rules as desktop
+   (see the clamp()s above) so the site reads and behaves identically. */
 @media (max-width: 760px) {
   .hero { height: 725vh; }
-
-  .scene { max-width: none; }
-
-  .scene-line { font-size: clamp(1.5rem, 7vw, 2rem); }
-
-  .scene--copy .scene-line { font-size: 0.8rem; line-height: 1.5; }
-
-  .hero-foot { bottom: 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
